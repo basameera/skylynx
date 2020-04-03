@@ -2,7 +2,7 @@
 
 Refer https://truveris.github.io/articles/configuring-pypirc/
 
-**NOTE:** Remove `.travis.yaml` before first git push
+**NOTE:** Remove `.travis.yml` before first git push
 
 ---
 
@@ -50,10 +50,10 @@ Fill out `setup.py` properly
 ### Travis CI
 1. Install `pip install pipreqs`
 1. Run `bash pipreqs.sh`
-1. First push the git **without** `.travis.yaml` file.
+1. First push the git **without** `.travis.yml` file.
 1. Then add the repository in Travis-CI
 1. Add the `build status` markdown to the `README.md` file.
-1. Then push git with `.travis.yaml` file. **NOTE:** content of `.travis.yaml` is below;
+1. Then push git with `.travis.yml` file. **NOTE:** content of `.travis.yml` is below;
     ```
     language: python
     python:
