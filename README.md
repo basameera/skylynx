@@ -160,7 +160,7 @@ from skylynx.utils import clog
 clog('Hello')
 ```
 
-![alt text](docs/clog_normal.png)
+![alt text](https://raw.githubusercontent.com/basameera/skylynx/master/docs/clog_colors.png)
 
 **Debug Levels**
 
@@ -172,7 +172,7 @@ clog('Hello', verbose='ERROR')
 clog('Hello', verbose='CRITICAL')
 ```
 
-![alt text](docs/clog_debug_levels.png)
+![alt text](https://raw.githubusercontent.com/basameera/skylynx/master/docs/clog_debug_levels.png)
 
 **Colors**
 
@@ -185,5 +185,5 @@ clog('Hello', verbose='MAGENTA')
 clog('Hello', verbose='CYAN')
 ```
 
-![alt text](docs/clog_colors.png)
+![alt text](https://raw.githubusercontent.com/basameera/skylynx/master/docs/clog_colors.png)
 
