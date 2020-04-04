@@ -1,27 +1,23 @@
 import setup_path
-import skylynx
 import skylynx.utils as su
-
+import os
 
 if __name__ == "__main__":
-    print('skylynx', skylynx.__version__)
 
-    # JSON
-    # Write
+    # Pretty Print
     data_dict = dict(
-        a=123,
-        b='skylynx'
+        a='This print a python dict object in a human readable form.',
+        b=456,
+        c=dict(
+            d=123,
+            e='skylynx'
+        ),
+        f = ['abc', 123]
     )
-    su.json_write('misc/example.json', data_dict)
+    su.pprint(data_dict, '> Header <')
 
-    # Read
-    data = su.json_read('misc/example.json')
-    print(data)
-
-    # YAML
-    # Write
-    su.yaml_write('misc/example.yaml', data_dict)
-
-    # Read
-    data = su.yaml_read('misc/example.yaml')
-    print(data)
+    # Make Directories
+    path = 'path/to/the/folder/'
+    su.makedirs(path)
+    print(os.path.exists(path))
+    os.removedirs(path)
