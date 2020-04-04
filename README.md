@@ -111,3 +111,41 @@ print(os.path.exists(path))
 >> True
 ```
 
+#### Simple command line arguments
+
+Add the following code to `example.py` 
+
+``` python
+from skylynx.utils import cli_args
+
+if __name__ == "__main__":
+
+  cli_params = dict(task=0,
+                    length=10
+                    )
+
+  args = cli_args(cli_params)
+  task = args['task']
+  length = args['length']
+```
+
+**How to use**
+
+``` bash
+python example.py -h
+```
+
+``` 
+usage: test.py [-h] [-a A] [-b B]
+
+*** Simple cli args - by Skylynx ***
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -a A        task (default: 0)
+  -b B        length (default: 10)
+```
+
+``` bash
+python example.py -a <task value> -b <length value>
+```

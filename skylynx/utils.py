@@ -7,19 +7,74 @@ import json
 import yaml
 from blessings import Terminal
 import os
+import argparse
+import string
 
-__all__ = ["json_write", "json_read",
-           "yaml_write", "yaml_read",
-           "pprint", "makedirs",
+__all__ = ["json_write", "json_read", "yaml_write", "yaml_read",
+           "pprint", "makedirs", "cli_args",
            ]
+
+
+def _arg_reform(params):
+    alphabet = list(string.ascii_lowercase)
+    alphabet.remove('h')
+    if len(params) > 25:
+        raise ValueError('Cannot handle more than 25 args.')
+
+    if isinstance(params, dict):
+        arg_dict = dict()
+        for i, (key, value) in enumerate(params.items()):
+            arg_dict[alphabet[i]] = (
+                key + ' (default: {})'.format(value), value)
+        return arg_dict
+    else:
+        raise TypeError('params should be dict type')
+
+
+def cli_args(cli_params):
+    """[summary]
+
+    Arguments:
+        cli_params {dict} -- [A python dict containing, cli argument name and defalut value as key, value pairs]
+
+    Raises:
+        TypeError: [Input type can only be dict]
+
+    Returns:
+        [dict] -- [A python dict similar to the input, except the values are replaced by user argument values]
+
+    Usage:
+
+        cli_params = dict(task=0,
+                      length=10
+                      )
+
+        args = cli_args(cli_params)
+        task = args['task']
+    """
+
+    params = _arg_reform(cli_params)
+    # check if params is dict
+    if isinstance(params, dict):
+        parser = argparse.ArgumentParser(
+            description='*** Simple cli args - by Skylynx ***')
+        for key, value in params.items():
+            parser.add_argument('-'+key, help=value[0], default=value[1])
+        output = dict()
+
+        for key1, key2 in dict(zip(cli_params, sorted(parser.parse_args().__dict__))).items():
+            output[key1] = parser.parse_args().__dict__[key2]
+        return output
+    else:
+        raise TypeError('params should be dict')
 
 
 def makedirs(path):
     """Make directories if they don't already exists/
-    
+
     Arguments:
         path {str} -- ['path/to/the/folder/']
-    """    
+    """
     if not os.path.exists(path):
         os.makedirs(path)
 
