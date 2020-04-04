@@ -10,7 +10,7 @@ Python support functions module
 
 ---
 
-## Version 0.0.3
+## Version 0.0.4
 
 ### `skylynx` 
 
@@ -110,4 +110,80 @@ print(os.path.exists(path))
 
 >> True
 ```
+
+#### Simple command line arguments
+
+Add the following code to `example.py` 
+
+``` python
+from skylynx.utils import cli_args
+
+if __name__ == "__main__":
+
+  cli_params = dict(task=0,
+                    length=10
+                    )
+
+  args = cli_args(cli_params)
+  task = args['task']
+  length = args['length']
+```
+
+**How to use**
+
+``` bash
+python example.py -h
+```
+
+``` 
+usage: test.py [-h] [-a A] [-b B]
+
+*** Simple cli args - by Skylynx ***
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -a A        task (default: 0)
+  -b B        length (default: 10)
+```
+
+``` bash
+python example.py -a <task value> -b <length value>
+```
+
+#### clog
+
+**Normal use**
+
+``` python
+from skylynx.utils import clog
+
+clog('Hello')
+```
+
+![alt text](docs/clog_normal.png)
+
+**Debug Levels**
+
+``` python
+clog('Hello', verbose='DEBUG')
+clog('Hello', verbose='INFO')
+clog('Hello', verbose='WARNING')
+clog('Hello', verbose='ERROR')
+clog('Hello', verbose='CRITICAL')
+```
+
+![alt text](docs/clog_debug_levels.png)
+
+**Colors**
+
+``` python
+clog('Hello', verbose='RED')
+clog('Hello', verbose='GREEN')
+clog('Hello', verbose='YELLOW')
+clog('Hello', verbose='BLUE')
+clog('Hello', verbose='MAGENTA')
+clog('Hello', verbose='CYAN')
+```
+
+![alt text](docs/clog_colors.png)
 
