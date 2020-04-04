@@ -9,10 +9,137 @@ from blessings import Terminal
 import os
 import argparse
 import string
+import datetime
 
 __all__ = ["json_write", "json_read", "yaml_write", "yaml_read",
-           "pprint", "makedirs", "cli_args",
+           "pprint", "makedirs", "cli_args", "clog",
            ]
+
+
+class tcolors:
+    """
+    Terminal Colors
+    ---
+
+    https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+    """
+    FG_BLACK = '\033[90m'
+    FG_RED = '\033[91m'
+    FG_GREEN = '\033[92m'
+    FG_YELLOW = '\033[93m'
+    FG_BLUE = '\033[94m'
+    FG_MAGENTA = '\033[95m'
+    FG_CYAN = '\033[96m'
+    FG_WHITE = '\033[97m'
+
+    BG_BLACK = '\033[100m'
+    BG_RED = '\033[101m'
+    BG_GREEN = '\033[102m'
+    BG_YELLOW = '\033[103m'
+    BG_BLUE = '\033[104m'
+    BG_MAGENTA = '\033[105m'
+    BG_CYAN = '\033[106m'
+    BG_WHITE = '\033[107m'
+
+
+class tformat:
+    """https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
+    """
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    ENDC = '\033[0m'
+
+
+class vcolors:
+    """
+    Verbose Colors
+    ---
+
+    https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+    """
+    INFO = tcolors.FG_GREEN
+    WARNING = tcolors.FG_YELLOW
+    ERROR = tcolors.FG_RED
+    CRITICAL = tformat.BOLD + tformat.UNDERLINE + tcolors.FG_RED
+
+
+def clog(*args, end='\n', verbose='DEBUG'):
+    """Logger with date-time and font coloring.
+
+    Keyword Arguments:
+        end {str} -- [description] (default: {'\\n'})
+        verbose {str} -- [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN] (default: {'DEBUG'})
+    """
+    if verbose == 'DEBUG':
+        _print(*args, end=end)
+    elif verbose == 'INFO':
+        _info(*args, end=end)
+    elif verbose == 'WARNING':
+        _warn(*args, end=end)
+    elif verbose == 'ERROR':
+        _error(*args, end=end)
+    elif verbose == 'CRITICAL':
+        _critical(*args, end=end)
+
+    elif verbose == 'RED':
+        _red(*args, end=end)
+    elif verbose == 'GREEN':
+        _green(*args, end=end)
+    elif verbose == 'YELLOW':
+        _yellow(*args, end=end)
+    elif verbose == 'BLUE':
+        _blue(*args, end=end)
+    elif verbose == 'MAGENTA':
+        _magenta(*args, end=end)
+    elif verbose == 'CYAN':
+        _cyan(*args, end=end)
+
+
+def _info(*args, end='\n'):
+    _print(*args, end=end, header=vcolors.INFO, footer=tformat.ENDC)
+
+
+def _warn(*args, end='\n'):
+    _print(*args, end=end, header=vcolors.WARNING, footer=tformat.ENDC)
+
+
+def _error(*args, end='\n'):
+    _print(*args, end=end, header=vcolors.ERROR, footer=tformat.ENDC)
+
+
+def _critical(*args, end='\n'):
+    _print(*args, end=end, header=vcolors.CRITICAL, footer=tformat.ENDC)
+
+
+def _red(*args, end='\n'):
+    _print(*args, end=end, header=tcolors.FG_RED, footer=tformat.ENDC)
+
+
+def _green(*args, end='\n'):
+    _print(*args, end=end, header=tcolors.FG_GREEN, footer=tformat.ENDC)
+
+
+def _yellow(*args, end='\n'):
+    _print(*args, end=end, header=tcolors.FG_YELLOW, footer=tformat.ENDC)
+
+
+def _blue(*args, end='\n'):
+    _print(*args, end=end, header=tcolors.FG_BLUE, footer=tformat.ENDC)
+
+
+def _magenta(*args, end='\n'):
+    _print(*args, end=end, header=tcolors.FG_MAGENTA, footer=tformat.ENDC)
+
+
+def _cyan(*args, end='\n'):
+    _print(*args, end=end, header=tcolors.FG_CYAN, footer=tformat.ENDC)
+
+
+def _print(*args, end='\n', header='', footer=''):
+    msg = '>>> '+str(datetime.datetime.now()).split('.')[0][2:] + ' :'
+    for s in args:
+        msg = msg + ' ' + str(s)
+    print(header + msg + footer, end=end)
 
 
 def _arg_reform(params):

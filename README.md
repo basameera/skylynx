@@ -10,7 +10,7 @@ Python support functions module
 
 ---
 
-## Version 0.0.3
+## Version 0.0.4
 
 ### `skylynx` 
 
@@ -149,3 +149,41 @@ optional arguments:
 ``` bash
 python example.py -a <task value> -b <length value>
 ```
+
+#### clog
+
+**Normal use**
+
+``` python
+from skylynx.utils import clog
+
+clog('Hello')
+```
+
+![alt text](docs/clog_normal.png)
+
+**Debug Levels**
+
+``` python
+clog('Hello', verbose='DEBUG')
+clog('Hello', verbose='INFO')
+clog('Hello', verbose='WARNING')
+clog('Hello', verbose='ERROR')
+clog('Hello', verbose='CRITICAL')
+```
+
+![alt text](docs/clog_debug_levels.png)
+
+**Colors**
+
+``` python
+clog('Hello', verbose='RED')
+clog('Hello', verbose='GREEN')
+clog('Hello', verbose='YELLOW')
+clog('Hello', verbose='BLUE')
+clog('Hello', verbose='MAGENTA')
+clog('Hello', verbose='CYAN')
+```
+
+![alt text](docs/clog_colors.png)
+
