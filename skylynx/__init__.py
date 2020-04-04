@@ -1,1 +1,3 @@
-from .text import func
+__version__ = '0.0.2'
+__author__ = 'Sameera Sandaruwan'
+__author_email__ = 'basameera@protonmail.com'
