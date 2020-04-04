@@ -2,6 +2,9 @@
 
 ## requirements.txt
 
-1. Run `bash pipreqs.sh`, this create the `pipreqs.txt` file, which contain only imported package names.
-1. Then make a script to find the correct version of all those packages.
-1. Put them in `requirements.txt`.
+1. Run `bash pipreqs.sh`. This will create the proper `requirements.txt` file.
+
+## To Do List
+
+- [ ] Add Change log
+- [ ] Generate docs
