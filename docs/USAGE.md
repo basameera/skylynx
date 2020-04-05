@@ -1,20 +1,13 @@
-# skylynx
-
-**Status**
-
-[![Build Status](https://travis-ci.org/basameera/skylynx.svg?branch=master)](https://travis-ci.org/basameera/skylynx)
-
-Python support functions module
-
-**Only Python 3**
+# skylynx documentation
 
 Website : https://basameera.github.io/skylynx/
+Github: https://github.com/basameera/skylynx
 
 ---
 
 ## Documentation
 
-[Docs](https://basameera.github.io/skylynx/docs.html)
+[Docs](https://basameera.github.io/skylynx/)
 
 ---
 
@@ -22,7 +15,7 @@ Website : https://basameera.github.io/skylynx/
 
 `pip install skylynx` 
 
-## Version 0.0.4
+## Version 0.1
 
 ### `skylynx` 
 
@@ -102,7 +95,7 @@ data_dict = dict(
 su.pprint(data_dict, '> Header <')
 ```
 
-``` bash
+```
 ======================== > Header < ========================
 a: This print a python dict object in a human readable form.
 b: 456
