@@ -39,26 +39,9 @@ import argparse
 import string
 import datetime
 
-__all__ = [&#34;json_write&#34;, &#34;json_read&#34;, &#34;yaml_write&#34;, &#34;yaml_read&#34;,
-           &#34;pprint&#34;, &#34;makedirs&#34;, &#34;cli_args&#34;, &#34;clog&#34;, &#34;numpy_docs&#34;, 
-           ]
+__all__ = [&#34;json_write&#34;, &#34;json_read&#34;, &#34;yaml_write&#34;, &#34;yaml_read&#34;, &#34;pprint&#34;, &#34;makedirs&#34;, &#34;cli_args&#34;, &#34;clog&#34;,
 
-def numpy_docs(abc, qwe=True):
-    &#34;&#34;&#34;[summary]
-    
-    Parameters
-    ----------
-    abc : [type]
-        [description]
-    qwe : bool, optional
-        [description], by default True
-    
-    Returns
-    -------
-    [type]
-        [description]
-    &#34;&#34;&#34;    
-    return []
+           ]
 
 
 class tcolors:
@@ -87,7 +70,10 @@ class tcolors:
 
 
 class tformat:
-    &#34;&#34;&#34;https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
+    &#34;&#34;&#34;Terminal formatting
+    ---
+
+    https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
     &#34;&#34;&#34;
     BOLD = &#39;\033[1m&#39;
     UNDERLINE = &#39;\033[4m&#39;
@@ -95,8 +81,7 @@ class tformat:
 
 
 class vcolors:
-    &#34;&#34;&#34;
-    Verbose Colors
+    &#34;&#34;&#34;Verbose Colors
     ---
 
     https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
@@ -108,11 +93,14 @@ class vcolors:
 
 
 def clog(*args, end=&#39;\n&#39;, verbose=&#39;DEBUG&#39;):
-    &#34;&#34;&#34;Logger with date-time and font coloring.
+    &#34;&#34;&#34;Logger with date-time and font coloring
 
-    Keyword Arguments:
-        end {str} -- [description] (default: {&#39;\\n&#39;})
-        verbose {str} -- [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN] (default: {&#39;DEBUG&#39;})
+    Parameters
+    ----------
+    end : str, optional
+        [End character], by default &#39;\\n&#39;
+    verbose : str, optional
+        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default &#39;DEBUG&#39;
     &#34;&#34;&#34;
     if verbose == &#39;DEBUG&#39;:
         _print(*args, end=end)
@@ -203,19 +191,25 @@ def _arg_reform(params):
 
 
 def cli_args(cli_params):
-    &#34;&#34;&#34;[summary]
+    &#34;&#34;&#34;Simple commad-line arguments built on top of argparse
 
-    Arguments:
-        cli_params {dict} -- [A python dict containing, cli argument name and defalut value as key, value pairs]
+    Parameters
+    ----------
+    cli_params : [dict]
+        [A python dict containing, cli argument name and defalut value as key, value pairs]
 
-    Raises:
-        TypeError: [Input type can only be dict]
+    Returns
+    -------
+    [dict]
+        [A python dict similar to the input, except the values are replaced by user argument values]
 
-    Returns:
-        [dict] -- [A python dict similar to the input, except the values are replaced by user argument values]
+    Raises
+    ------
+    TypeError
+        [Input type can only be dict]
 
-    Usage:
-
+    Usage
+    -----
         cli_params = dict(task=0,
                       length=10
                       )
@@ -241,23 +235,27 @@ def cli_args(cli_params):
 
 
 def makedirs(path):
-    &#34;&#34;&#34;Make directories if they don&#39;t already exists/
+    &#34;&#34;&#34;Make directories if they do not already exists
 
-    Arguments:
-        path {str} -- [&#39;path/to/the/folder/&#39;]
+    Parameters
+    ----------
+    path : [str]
+        [&#39;path/to/the/folder/&#39;]
     &#34;&#34;&#34;
+
     if not os.path.exists(path):
         os.makedirs(path)
 
 
 def pprint(input, header=&#39;&#39;):
-    &#34;&#34;&#34;Skylynx Pretty Print - Print a python dict object in a human readable form.
+    &#34;&#34;&#34;Skylynx Pretty Print - Print a python dict object in a human readable form
 
-    Arguments:
-        input {dict} -- [python dictionary]
-
-    Keyword Arguments:
-        header {str} -- [Header for pretty print] (default: {&#39;&#39;})
+    Parameters
+    ----------
+    input : [dict]
+        [python dictionary]
+    header : str, optional
+        [Header for pretty print], by default &#39;&#39;
     &#34;&#34;&#34;
     _prettyPrint(input, heading=header)
 
@@ -356,9 +354,12 @@ def _getMaxLen(input, output, prev_indent=0):
 def yaml_write(filename, data):
     &#34;&#34;&#34;Write .yaml files
 
-    Arguments:
-        filename {yaml} -- [path/to/file/name.yaml]
-        data {dict} -- [python dictionary object]
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
+    data : [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;) as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
@@ -367,22 +368,29 @@ def yaml_write(filename, data):
 def yaml_read(filename):
     &#34;&#34;&#34;Read .yaml files
 
-    Arguments:
-        filename {yaml} -- [path/to/file/name.yaml]
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
 
-    Returns:
-        [dict] -- [python dictionary object]
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
     with open(filename) as file:
         return yaml.load(file, Loader=yaml.FullLoader)
 
 
 def json_write(filename, data):
-    &#34;&#34;&#34;Write .json files (with indent and utf-8 encoding)
+    &#34;&#34;&#34;Write .json files (with indent and `utf-8` encoding)
 
-    Arguments:
-        filename {json} -- [path/to/file/name.json]
-        data {dict} -- [python dictionary object]
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
+    data : [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;, encoding=&#39;utf-8&#39;) as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=2)
@@ -391,14 +399,19 @@ def json_write(filename, data):
 def json_read(filename):
     &#34;&#34;&#34;Read .json files
 
-    Arguments:
-        filename {json} -- [path/to/file/name.json]
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
 
-    Returns:
-        [dict] -- [python dictionary object]
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
+
     with open(filename) as f_in:
-        return(json.load(f_in))
+        return json.load(f_in)
 
 
 if __name__ == &#39;__main__&#39;:
@@ -416,40 +429,52 @@ if __name__ == &#39;__main__&#39;:
 <span>def <span class="ident">cli_args</span></span>(<span>cli_params)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>[summary]</p>
-<h2 id="arguments">Arguments</h2>
-<p>cli_params {dict} &ndash; [A python dict containing, cli argument name and defalut value as key, value pairs]</p>
-<h2 id="raises">Raises</h2>
+<section class="desc"><p>Simple commad-line arguments built on top of argparse</p>
+<h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>TypeError</code></strong></dt>
-<dd>[Input type can only be dict]</dd>
+<dt><strong><code>cli_params</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[A python dict containing, cli argument name and defalut value as key, value pairs]</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>[dict] &ndash; [A python dict similar to the input, except the values are replaced by user argument values]</p>
+<p>[dict]
+[A python dict similar to the input, except the values are replaced by user argument values]</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>TypeError</code></dt>
+<dd>[Input type can only be dict]</dd>
+</dl>
 <h2 id="usage">Usage</h2>
-<p>cli_params = dict(task=0,
-length=10
-)</p>
-<p>args = cli_args(cli_params)
-task = args['task']</p></section>
+<pre><code>cli_params = dict(task=0,
+              length=10
+              )
+
+args = cli_args(cli_params)
+task = args['task']
+</code></pre></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def cli_args(cli_params):
-    &#34;&#34;&#34;[summary]
+    &#34;&#34;&#34;Simple commad-line arguments built on top of argparse
 
-    Arguments:
-        cli_params {dict} -- [A python dict containing, cli argument name and defalut value as key, value pairs]
+    Parameters
+    ----------
+    cli_params : [dict]
+        [A python dict containing, cli argument name and defalut value as key, value pairs]
 
-    Raises:
-        TypeError: [Input type can only be dict]
+    Returns
+    -------
+    [dict]
+        [A python dict similar to the input, except the values are replaced by user argument values]
 
-    Returns:
-        [dict] -- [A python dict similar to the input, except the values are replaced by user argument values]
+    Raises
+    ------
+    TypeError
+        [Input type can only be dict]
 
-    Usage:
-
+    Usage
+    -----
         cli_params = dict(task=0,
                       length=10
                       )
@@ -478,20 +503,27 @@ task = args['task']</p></section>
 <span>def <span class="ident">clog</span></span>(<span>*args, end='\n', verbose='DEBUG')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Logger with date-time and font coloring.</p>
-<p>Keyword Arguments:
-end {str} &ndash; [description] (default: {'\n'})
-verbose {str} &ndash; [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN] (default: {'DEBUG'})</p></section>
+<section class="desc"><p>Logger with date-time and font coloring</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>end</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[End character], by default '\n'</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default 'DEBUG'</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def clog(*args, end=&#39;\n&#39;, verbose=&#39;DEBUG&#39;):
-    &#34;&#34;&#34;Logger with date-time and font coloring.
+    &#34;&#34;&#34;Logger with date-time and font coloring
 
-    Keyword Arguments:
-        end {str} -- [description] (default: {&#39;\\n&#39;})
-        verbose {str} -- [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN] (default: {&#39;DEBUG&#39;})
+    Parameters
+    ----------
+    end : str, optional
+        [End character], by default &#39;\\n&#39;
+    verbose : str, optional
+        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default &#39;DEBUG&#39;
     &#34;&#34;&#34;
     if verbose == &#39;DEBUG&#39;:
         _print(*args, end=end)
@@ -523,10 +555,14 @@ verbose {str} &ndash; [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW
 </code></dt>
 <dd>
 <section class="desc"><p>Read .json files</p>
-<h2 id="arguments">Arguments</h2>
-<p>filename {json} &ndash; [path/to/file/name.json]</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>json</code>]</dt>
+<dd>[path/to/file/name.json]</dd>
+</dl>
 <h2 id="returns">Returns</h2>
-<p>[dict] &ndash; [python dictionary object]</p></section>
+<p>[dict]
+[python dictionary object]</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -534,34 +570,46 @@ verbose {str} &ndash; [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW
 <pre><code class="python">def json_read(filename):
     &#34;&#34;&#34;Read .json files
 
-    Arguments:
-        filename {json} -- [path/to/file/name.json]
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
 
-    Returns:
-        [dict] -- [python dictionary object]
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
+
     with open(filename) as f_in:
-        return(json.load(f_in))</code></pre>
+        return json.load(f_in)</code></pre>
 </details>
 </dd>
 <dt id="skylynx.utils.json_write"><code class="name flex">
 <span>def <span class="ident">json_write</span></span>(<span>filename, data)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Write .json files (with indent and utf-8 encoding)</p>
-<h2 id="arguments">Arguments</h2>
-<p>filename {json} &ndash; [path/to/file/name.json]
-data {dict} &ndash; [python dictionary object]</p></section>
+<section class="desc"><p>Write .json files (with indent and <code>utf-8</code> encoding)</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>json</code>]</dt>
+<dd>[path/to/file/name.json]</dd>
+<dt><strong><code>data</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[python dictionary object]</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def json_write(filename, data):
-    &#34;&#34;&#34;Write .json files (with indent and utf-8 encoding)
+    &#34;&#34;&#34;Write .json files (with indent and `utf-8` encoding)
 
-    Arguments:
-        filename {json} -- [path/to/file/name.json]
-        data {dict} -- [python dictionary object]
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
+    data : [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;, encoding=&#39;utf-8&#39;) as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=2)</code></pre>
@@ -571,81 +619,54 @@ data {dict} &ndash; [python dictionary object]</p></section>
 <span>def <span class="ident">makedirs</span></span>(<span>path)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Make directories if they don't already exists/</p>
-<h2 id="arguments">Arguments</h2>
-<p>path {str} &ndash; ['path/to/the/folder/']</p></section>
+<section class="desc"><p>Make directories if they do not already exists</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;[<code>str</code>]</dt>
+<dd>['path/to/the/folder/']</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def makedirs(path):
-    &#34;&#34;&#34;Make directories if they don&#39;t already exists/
+    &#34;&#34;&#34;Make directories if they do not already exists
 
-    Arguments:
-        path {str} -- [&#39;path/to/the/folder/&#39;]
-    &#34;&#34;&#34;
-    if not os.path.exists(path):
-        os.makedirs(path)</code></pre>
-</details>
-</dd>
-<dt id="skylynx.utils.numpy_docs"><code class="name flex">
-<span>def <span class="ident">numpy_docs</span></span>(<span>abc, qwe=True)</span>
-</code></dt>
-<dd>
-<section class="desc"><p>[summary]</p>
-<h2 id="parameters">Parameters</h2>
-<dl>
-<dt><strong><code>abc</code></strong> :&ensp;[<code>type</code>]</dt>
-<dd>[description]</dd>
-<dt><strong><code>qwe</code></strong> :&ensp;<code>bool</code>, optional</dt>
-<dd>[description], by default True</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>[type]
-[description]</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def numpy_docs(abc, qwe=True):
-    &#34;&#34;&#34;[summary]
-    
     Parameters
     ----------
-    abc : [type]
-        [description]
-    qwe : bool, optional
-        [description], by default True
-    
-    Returns
-    -------
-    [type]
-        [description]
-    &#34;&#34;&#34;    
-    return []</code></pre>
+    path : [str]
+        [&#39;path/to/the/folder/&#39;]
+    &#34;&#34;&#34;
+
+    if not os.path.exists(path):
+        os.makedirs(path)</code></pre>
 </details>
 </dd>
 <dt id="skylynx.utils.pprint"><code class="name flex">
 <span>def <span class="ident">pprint</span></span>(<span>input, header='')</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Skylynx Pretty Print - Print a python dict object in a human readable form.</p>
-<h2 id="arguments">Arguments</h2>
-<p>input {dict} &ndash; [python dictionary]
-Keyword Arguments:
-header {str} &ndash; [Header for pretty print] (default: {''})</p></section>
+<section class="desc"><p>Skylynx Pretty Print - Print a python dict object in a human readable form</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>input</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[python dictionary]</dd>
+<dt><strong><code>header</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[Header for pretty print], by default ''</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def pprint(input, header=&#39;&#39;):
-    &#34;&#34;&#34;Skylynx Pretty Print - Print a python dict object in a human readable form.
+    &#34;&#34;&#34;Skylynx Pretty Print - Print a python dict object in a human readable form
 
-    Arguments:
-        input {dict} -- [python dictionary]
-
-    Keyword Arguments:
-        header {str} -- [Header for pretty print] (default: {&#39;&#39;})
+    Parameters
+    ----------
+    input : [dict]
+        [python dictionary]
+    header : str, optional
+        [Header for pretty print], by default &#39;&#39;
     &#34;&#34;&#34;
     _prettyPrint(input, heading=header)</code></pre>
 </details>
@@ -655,10 +676,14 @@ header {str} &ndash; [Header for pretty print] (default: {''})</p></section>
 </code></dt>
 <dd>
 <section class="desc"><p>Read .yaml files</p>
-<h2 id="arguments">Arguments</h2>
-<p>filename {yaml} &ndash; [path/to/file/name.yaml]</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>yaml</code>]</dt>
+<dd>[path/to/file/name.yaml]</dd>
+</dl>
 <h2 id="returns">Returns</h2>
-<p>[dict] &ndash; [python dictionary object]</p></section>
+<p>[dict]
+[python dictionary object]</p></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -666,11 +691,15 @@ header {str} &ndash; [Header for pretty print] (default: {''})</p></section>
 <pre><code class="python">def yaml_read(filename):
     &#34;&#34;&#34;Read .yaml files
 
-    Arguments:
-        filename {yaml} -- [path/to/file/name.yaml]
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
 
-    Returns:
-        [dict] -- [python dictionary object]
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
     with open(filename) as file:
         return yaml.load(file, Loader=yaml.FullLoader)</code></pre>
@@ -681,9 +710,13 @@ header {str} &ndash; [Header for pretty print] (default: {''})</p></section>
 </code></dt>
 <dd>
 <section class="desc"><p>Write .yaml files</p>
-<h2 id="arguments">Arguments</h2>
-<p>filename {yaml} &ndash; [path/to/file/name.yaml]
-data {dict} &ndash; [python dictionary object]</p></section>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>yaml</code>]</dt>
+<dd>[path/to/file/name.yaml]</dd>
+<dt><strong><code>data</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[python dictionary object]</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -691,9 +724,12 @@ data {dict} &ndash; [python dictionary object]</p></section>
 <pre><code class="python">def yaml_write(filename, data):
     &#34;&#34;&#34;Write .yaml files
 
-    Arguments:
-        filename {yaml} -- [path/to/file/name.yaml]
-        data {dict} -- [python dictionary object]
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
+    data : [dict]
+        [python dictionary object]
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;) as outfile:
         yaml.dump(data, outfile, default_flow_style=False)</code></pre>
@@ -724,7 +760,6 @@ data {dict} &ndash; [python dictionary object]</p></section>
 <li><code><a title="skylynx.utils.json_read" href="#skylynx.utils.json_read">json_read</a></code></li>
 <li><code><a title="skylynx.utils.json_write" href="#skylynx.utils.json_write">json_write</a></code></li>
 <li><code><a title="skylynx.utils.makedirs" href="#skylynx.utils.makedirs">makedirs</a></code></li>
-<li><code><a title="skylynx.utils.numpy_docs" href="#skylynx.utils.numpy_docs">numpy_docs</a></code></li>
 <li><code><a title="skylynx.utils.pprint" href="#skylynx.utils.pprint">pprint</a></code></li>
 <li><code><a title="skylynx.utils.yaml_read" href="#skylynx.utils.yaml_read">yaml_read</a></code></li>
 <li><code><a title="skylynx.utils.yaml_write" href="#skylynx.utils.yaml_write">yaml_write</a></code></li>
