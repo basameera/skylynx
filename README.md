@@ -10,6 +10,10 @@ Python support functions module
 
 ---
 
+## Install
+
+`pip install skylynx` 
+
 ## Version 0.0.4
 
 ### `skylynx` 

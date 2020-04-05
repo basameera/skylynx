@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>skylynx.utils API documentation</title>
+<meta name="description" content="Skylynx utils
+===" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>skylynx.utils</code></h1>
+</header>
+<section id="section-intro">
+<h1 id="skylynx-utils">Skylynx utils</h1>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Skylynx utils
+===
+&#34;&#34;&#34;
+
+import json
+import yaml
+from blessings import Terminal
+import os
+import argparse
+import string
+import datetime
+
+__all__ = [&#34;json_write&#34;, &#34;json_read&#34;, &#34;yaml_write&#34;, &#34;yaml_read&#34;, &#34;pprint&#34;, &#34;makedirs&#34;, &#34;cli_args&#34;, &#34;clog&#34;,
+
+           ]
+
+
+class tcolors:
+    &#34;&#34;&#34;Terminal Colors
+    ---
+
+    https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+    &#34;&#34;&#34;
+    FG_BLACK = &#39;\033[90m&#39;
+    FG_RED = &#39;\033[91m&#39;
+    FG_GREEN = &#39;\033[92m&#39;
+    FG_YELLOW = &#39;\033[93m&#39;
+    FG_BLUE = &#39;\033[94m&#39;
+    FG_MAGENTA = &#39;\033[95m&#39;
+    FG_CYAN = &#39;\033[96m&#39;
+    FG_WHITE = &#39;\033[97m&#39;
+
+    BG_BLACK = &#39;\033[100m&#39;
+    BG_RED = &#39;\033[101m&#39;
+    BG_GREEN = &#39;\033[102m&#39;
+    BG_YELLOW = &#39;\033[103m&#39;
+    BG_BLUE = &#39;\033[104m&#39;
+    BG_MAGENTA = &#39;\033[105m&#39;
+    BG_CYAN = &#39;\033[106m&#39;
+    BG_WHITE = &#39;\033[107m&#39;
+
+
+class tformat:
+    &#34;&#34;&#34;Terminal formatting
+    ---
+
+    https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
+    &#34;&#34;&#34;
+    BOLD = &#39;\033[1m&#39;
+    UNDERLINE = &#39;\033[4m&#39;
+    ENDC = &#39;\033[0m&#39;
+
+
+class vcolors:
+    &#34;&#34;&#34;Verbose Colors
+    ---
+
+    https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+    &#34;&#34;&#34;
+    INFO = tcolors.FG_GREEN
+    WARNING = tcolors.FG_YELLOW
+    ERROR = tcolors.FG_RED
+    CRITICAL = tformat.BOLD + tformat.UNDERLINE + tcolors.FG_RED
+
+
+def clog(*args, end=&#39;\n&#39;, verbose=&#39;DEBUG&#39;):
+    &#34;&#34;&#34;Logger with date-time and font coloring
+
+    Parameters
+    ----------
+    end : str, optional
+        [End character], by default &#39;\\n&#39;
+    verbose : str, optional
+        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default &#39;DEBUG&#39;
+    &#34;&#34;&#34;
+    if verbose == &#39;DEBUG&#39;:
+        _print(*args, end=end)
+    elif verbose == &#39;INFO&#39;:
+        _info(*args, end=end)
+    elif verbose == &#39;WARNING&#39;:
+        _warn(*args, end=end)
+    elif verbose == &#39;ERROR&#39;:
+        _error(*args, end=end)
+    elif verbose == &#39;CRITICAL&#39;:
+        _critical(*args, end=end)
+
+    elif verbose == &#39;RED&#39;:
+        _red(*args, end=end)
+    elif verbose == &#39;GREEN&#39;:
+        _green(*args, end=end)
+    elif verbose == &#39;YELLOW&#39;:
+        _yellow(*args, end=end)
+    elif verbose == &#39;BLUE&#39;:
+        _blue(*args, end=end)
+    elif verbose == &#39;MAGENTA&#39;:
+        _magenta(*args, end=end)
+    elif verbose == &#39;CYAN&#39;:
+        _cyan(*args, end=end)
+
+
+def _info(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=vcolors.INFO, footer=tformat.ENDC)
+
+
+def _warn(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=vcolors.WARNING, footer=tformat.ENDC)
+
+
+def _error(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=vcolors.ERROR, footer=tformat.ENDC)
+
+
+def _critical(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=vcolors.CRITICAL, footer=tformat.ENDC)
+
+
+def _red(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=tcolors.FG_RED, footer=tformat.ENDC)
+
+
+def _green(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=tcolors.FG_GREEN, footer=tformat.ENDC)
+
+
+def _yellow(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=tcolors.FG_YELLOW, footer=tformat.ENDC)
+
+
+def _blue(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=tcolors.FG_BLUE, footer=tformat.ENDC)
+
+
+def _magenta(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=tcolors.FG_MAGENTA, footer=tformat.ENDC)
+
+
+def _cyan(*args, end=&#39;\n&#39;):
+    _print(*args, end=end, header=tcolors.FG_CYAN, footer=tformat.ENDC)
+
+
+def _print(*args, end=&#39;\n&#39;, header=&#39;&#39;, footer=&#39;&#39;):
+    msg = &#39;&gt;&gt;&gt; &#39;+str(datetime.datetime.now()).split(&#39;.&#39;)[0][2:] + &#39; :&#39;
+    for s in args:
+        msg = msg + &#39; &#39; + str(s)
+    print(header + msg + footer, end=end)
+
+
+def _arg_reform(params):
+    alphabet = list(string.ascii_lowercase)
+    alphabet.remove(&#39;h&#39;)
+    if len(params) &gt; 25:
+        raise ValueError(&#39;Cannot handle more than 25 args.&#39;)
+
+    if isinstance(params, dict):
+        arg_dict = dict()
+        for i, (key, value) in enumerate(params.items()):
+            arg_dict[alphabet[i]] = (
+                key + &#39; (default: {})&#39;.format(value), value)
+        return arg_dict
+    else:
+        raise TypeError(&#39;params should be dict type&#39;)
+
+
+def cli_args(cli_params):
+    &#34;&#34;&#34;Simple commad-line arguments built on top of argparse
+
+    Parameters
+    ----------
+    cli_params : [dict]
+        [A python dict containing, cli argument name and defalut value as key, value pairs]
+
+    Returns
+    -------
+    [dict]
+        [A python dict similar to the input, except the values are replaced by user argument values]
+
+    Raises
+    ------
+    TypeError
+        [Input type can only be dict]
+
+    Usage
+    -----
+        cli_params = dict(task=0,
+                      length=10
+                      )
+
+        args = cli_args(cli_params)
+        task = args[&#39;task&#39;]
+    &#34;&#34;&#34;
+
+    params = _arg_reform(cli_params)
+    # check if params is dict
+    if isinstance(params, dict):
+        parser = argparse.ArgumentParser(
+            description=&#39;*** Simple cli args - by Skylynx ***&#39;)
+        for key, value in params.items():
+            parser.add_argument(&#39;-&#39;+key, help=value[0], default=value[1])
+        output = dict()
+
+        for key1, key2 in dict(zip(cli_params, sorted(parser.parse_args().__dict__))).items():
+            output[key1] = parser.parse_args().__dict__[key2]
+        return output
+    else:
+        raise TypeError(&#39;params should be dict&#39;)
+
+
+def makedirs(path):
+    &#34;&#34;&#34;Make directories if they do not already exists
+
+    Parameters
+    ----------
+    path : [str]
+        [&#39;path/to/the/folder/&#39;]
+    &#34;&#34;&#34;
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+
+def pprint(input, header=&#39;&#39;):
+    &#34;&#34;&#34;Skylynx Pretty Print - Print a python dict object in a human readable form
+
+    Parameters
+    ----------
+    input : [dict]
+        [python dictionary]
+    header : str, optional
+        [Header for pretty print], by default &#39;&#39;
+    &#34;&#34;&#34;
+    _prettyPrint(input, heading=header)
+
+
+def _prettyPrint(input, heading=&#39;&#39;, prev_indent=0):
+    terminal = Terminal()
+    max_terminal_width = terminal.width
+    if isinstance(input, dict):
+        zzz = []
+        _getMaxLen(input, zzz)
+        maxFooterLen = min([max(zzz), max_terminal_width])
+        if max(zzz) &gt; max_terminal_width:
+            maxFooterLen -= 2
+
+        maxKeyLen = 0
+        maxValLen = 0
+        for key, value in input.items():
+            if len(str(key)) &gt; maxKeyLen:
+                maxKeyLen = len(str(key))
+            if len(str(value)) &gt; maxValLen:
+                maxValLen = len(str(value))
+
+        a = maxFooterLen - len(str(heading))
+        if heading == &#39;&#39;:
+            a += 2
+        # header
+        if prev_indent == 0:
+            _printLine(int(a/2), end=&#39;&#39;)
+            if heading != &#39;&#39;:
+                print(&#39;&#39;, heading, &#39;&#39;, end=&#39;&#39;)
+            _printLine(a - int(a/2))
+
+        # data
+        for key, value in input.items():
+            for _ in range(prev_indent):
+                print(&#39; &#39;, end=&#39;&#39;)
+            print(str(key), end=&#39;&#39;)
+            klen = len(str(key))
+            for _ in range(maxKeyLen - klen):
+                print(&#39; &#39;, end=&#39;&#39;)
+
+            print(&#39;:&#39;, end=&#39;&#39;)
+
+            if isinstance(value, dict):
+                print(&#39;&#39;)
+                _prettyPrint(value, prev_indent=prev_indent + maxKeyLen + 1)
+            else:
+                print(&#39;&#39;, value)
+
+        # footer
+        if prev_indent == 0:
+            _printLine(maxFooterLen + 2, symbol=&#39;-&#39;)
+
+    else:
+        raise TypeError(&#39;Input should be a Dictionary object.&#39;)
+
+
+def _printLine(len, symbol=&#39;=&#39;, end=&#39;\n&#39;):
+    if isinstance(len, int):
+        for _ in range(len):
+            print(symbol, end=&#39;&#39;)
+        print(end, end=&#39;&#39;)
+    else:
+        raise TypeError(&#39;Input should be an int value.&#39;)
+
+
+def _getMaxLen(input, output, prev_indent=0):
+    if isinstance(input, dict):
+        maxKeyLen = 0
+        maxValLen = 0
+        for key, value in input.items():
+            if len(str(key)) &gt; maxKeyLen:
+                maxKeyLen = len(str(key))
+            if len(str(value)) &gt; maxValLen:
+                maxValLen = len(str(value))
+
+        rawValLen = 0
+        # data
+        for key, value in input.items():
+            klen = len(str(key))
+
+            if isinstance(value, dict):
+                _getMaxLen(value, output,
+                           prev_indent=prev_indent + maxKeyLen + 1)
+            else:
+                if len(str(value)) &gt; rawValLen:
+                    rawValLen = len(str(value))
+
+        a = maxKeyLen + prev_indent + rawValLen
+        output.append(a)
+
+    else:
+        raise TypeError(&#39;Input should be a Dictionary object.&#39;)
+
+
+def yaml_write(filename, data):
+    &#34;&#34;&#34;Write .yaml files
+
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
+    data : [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+    with open(filename, &#39;w&#39;) as outfile:
+        yaml.dump(data, outfile, default_flow_style=False)
+
+
+def yaml_read(filename):
+    &#34;&#34;&#34;Read .yaml files
+
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
+
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+    with open(filename) as file:
+        return yaml.load(file, Loader=yaml.FullLoader)
+
+
+def json_write(filename, data):
+    &#34;&#34;&#34;Write .json files (with indent and `utf-8` encoding)
+
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
+    data : [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+    with open(filename, &#39;w&#39;, encoding=&#39;utf-8&#39;) as outfile:
+        json.dump(data, outfile, ensure_ascii=False, indent=2)
+
+
+def json_read(filename):
+    &#34;&#34;&#34;Read .json files
+
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
+
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+
+    with open(filename) as f_in:
+        return json.load(f_in)
+
+
+if __name__ == &#39;__main__&#39;:
+    pass</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="skylynx.utils.cli_args"><code class="name flex">
+<span>def <span class="ident">cli_args</span></span>(<span>cli_params)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Simple commad-line arguments built on top of argparse</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>cli_params</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[A python dict containing, cli argument name and defalut value as key, value pairs]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>[dict]
+[A python dict similar to the input, except the values are replaced by user argument values]</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>TypeError</code></dt>
+<dd>[Input type can only be dict]</dd>
+</dl>
+<h2 id="usage">Usage</h2>
+<pre><code>cli_params = dict(task=0,
+              length=10
+              )
+
+args = cli_args(cli_params)
+task = args['task']
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cli_args(cli_params):
+    &#34;&#34;&#34;Simple commad-line arguments built on top of argparse
+
+    Parameters
+    ----------
+    cli_params : [dict]
+        [A python dict containing, cli argument name and defalut value as key, value pairs]
+
+    Returns
+    -------
+    [dict]
+        [A python dict similar to the input, except the values are replaced by user argument values]
+
+    Raises
+    ------
+    TypeError
+        [Input type can only be dict]
+
+    Usage
+    -----
+        cli_params = dict(task=0,
+                      length=10
+                      )
+
+        args = cli_args(cli_params)
+        task = args[&#39;task&#39;]
+    &#34;&#34;&#34;
+
+    params = _arg_reform(cli_params)
+    # check if params is dict
+    if isinstance(params, dict):
+        parser = argparse.ArgumentParser(
+            description=&#39;*** Simple cli args - by Skylynx ***&#39;)
+        for key, value in params.items():
+            parser.add_argument(&#39;-&#39;+key, help=value[0], default=value[1])
+        output = dict()
+
+        for key1, key2 in dict(zip(cli_params, sorted(parser.parse_args().__dict__))).items():
+            output[key1] = parser.parse_args().__dict__[key2]
+        return output
+    else:
+        raise TypeError(&#39;params should be dict&#39;)</code></pre>
+</details>
+</dd>
+<dt id="skylynx.utils.clog"><code class="name flex">
+<span>def <span class="ident">clog</span></span>(<span>*args, end='\n', verbose='DEBUG')</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Logger with date-time and font coloring</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>end</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[End character], by default '\n'</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default 'DEBUG'</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clog(*args, end=&#39;\n&#39;, verbose=&#39;DEBUG&#39;):
+    &#34;&#34;&#34;Logger with date-time and font coloring
+
+    Parameters
+    ----------
+    end : str, optional
+        [End character], by default &#39;\\n&#39;
+    verbose : str, optional
+        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default &#39;DEBUG&#39;
+    &#34;&#34;&#34;
+    if verbose == &#39;DEBUG&#39;:
+        _print(*args, end=end)
+    elif verbose == &#39;INFO&#39;:
+        _info(*args, end=end)
+    elif verbose == &#39;WARNING&#39;:
+        _warn(*args, end=end)
+    elif verbose == &#39;ERROR&#39;:
+        _error(*args, end=end)
+    elif verbose == &#39;CRITICAL&#39;:
+        _critical(*args, end=end)
+
+    elif verbose == &#39;RED&#39;:
+        _red(*args, end=end)
+    elif verbose == &#39;GREEN&#39;:
+        _green(*args, end=end)
+    elif verbose == &#39;YELLOW&#39;:
+        _yellow(*args, end=end)
+    elif verbose == &#39;BLUE&#39;:
+        _blue(*args, end=end)
+    elif verbose == &#39;MAGENTA&#39;:
+        _magenta(*args, end=end)
+    elif verbose == &#39;CYAN&#39;:
+        _cyan(*args, end=end)</code></pre>
+</details>
+</dd>
+<dt id="skylynx.utils.json_read"><code class="name flex">
+<span>def <span class="ident">json_read</span></span>(<span>filename)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Read .json files</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>json</code>]</dt>
+<dd>[path/to/file/name.json]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>[dict]
+[python dictionary object]</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def json_read(filename):
+    &#34;&#34;&#34;Read .json files
+
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
+
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+
+    with open(filename) as f_in:
+        return json.load(f_in)</code></pre>
+</details>
+</dd>
+<dt id="skylynx.utils.json_write"><code class="name flex">
+<span>def <span class="ident">json_write</span></span>(<span>filename, data)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Write .json files (with indent and <code>utf-8</code> encoding)</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>json</code>]</dt>
+<dd>[path/to/file/name.json]</dd>
+<dt><strong><code>data</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[python dictionary object]</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def json_write(filename, data):
+    &#34;&#34;&#34;Write .json files (with indent and `utf-8` encoding)
+
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
+    data : [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+    with open(filename, &#39;w&#39;, encoding=&#39;utf-8&#39;) as outfile:
+        json.dump(data, outfile, ensure_ascii=False, indent=2)</code></pre>
+</details>
+</dd>
+<dt id="skylynx.utils.makedirs"><code class="name flex">
+<span>def <span class="ident">makedirs</span></span>(<span>path)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Make directories if they do not already exists</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;[<code>str</code>]</dt>
+<dd>['path/to/the/folder/']</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def makedirs(path):
+    &#34;&#34;&#34;Make directories if they do not already exists
+
+    Parameters
+    ----------
+    path : [str]
+        [&#39;path/to/the/folder/&#39;]
+    &#34;&#34;&#34;
+
+    if not os.path.exists(path):
+        os.makedirs(path)</code></pre>
+</details>
+</dd>
+<dt id="skylynx.utils.pprint"><code class="name flex">
+<span>def <span class="ident">pprint</span></span>(<span>input, header='')</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Skylynx Pretty Print - Print a python dict object in a human readable form</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>input</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[python dictionary]</dd>
+<dt><strong><code>header</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[Header for pretty print], by default ''</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pprint(input, header=&#39;&#39;):
+    &#34;&#34;&#34;Skylynx Pretty Print - Print a python dict object in a human readable form
+
+    Parameters
+    ----------
+    input : [dict]
+        [python dictionary]
+    header : str, optional
+        [Header for pretty print], by default &#39;&#39;
+    &#34;&#34;&#34;
+    _prettyPrint(input, heading=header)</code></pre>
+</details>
+</dd>
+<dt id="skylynx.utils.yaml_read"><code class="name flex">
+<span>def <span class="ident">yaml_read</span></span>(<span>filename)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Read .yaml files</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>yaml</code>]</dt>
+<dd>[path/to/file/name.yaml]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>[dict]
+[python dictionary object]</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yaml_read(filename):
+    &#34;&#34;&#34;Read .yaml files
+
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
+
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+    with open(filename) as file:
+        return yaml.load(file, Loader=yaml.FullLoader)</code></pre>
+</details>
+</dd>
+<dt id="skylynx.utils.yaml_write"><code class="name flex">
+<span>def <span class="ident">yaml_write</span></span>(<span>filename, data)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Write .yaml files</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;[<code>yaml</code>]</dt>
+<dd>[path/to/file/name.yaml]</dd>
+<dt><strong><code>data</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dd>[python dictionary object]</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yaml_write(filename, data):
+    &#34;&#34;&#34;Write .yaml files
+
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
+    data : [dict]
+        [python dictionary object]
+    &#34;&#34;&#34;
+    with open(filename, &#39;w&#39;) as outfile:
+        yaml.dump(data, outfile, default_flow_style=False)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul>
+<li><a href="#skylynx-utils">Skylynx utils</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="skylynx" href="index.html">skylynx</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="skylynx.utils.cli_args" href="#skylynx.utils.cli_args">cli_args</a></code></li>
+<li><code><a title="skylynx.utils.clog" href="#skylynx.utils.clog">clog</a></code></li>
+<li><code><a title="skylynx.utils.json_read" href="#skylynx.utils.json_read">json_read</a></code></li>
+<li><code><a title="skylynx.utils.json_write" href="#skylynx.utils.json_write">json_write</a></code></li>
+<li><code><a title="skylynx.utils.makedirs" href="#skylynx.utils.makedirs">makedirs</a></code></li>
+<li><code><a title="skylynx.utils.pprint" href="#skylynx.utils.pprint">pprint</a></code></li>
+<li><code><a title="skylynx.utils.yaml_read" href="#skylynx.utils.yaml_read">yaml_read</a></code></li>
+<li><code><a title="skylynx.utils.yaml_write" href="#skylynx.utils.yaml_write">yaml_write</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

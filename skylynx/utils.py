@@ -11,14 +11,13 @@ import argparse
 import string
 import datetime
 
-__all__ = ["json_write", "json_read", "yaml_write", "yaml_read",
-           "pprint", "makedirs", "cli_args", "clog",
+__all__ = ["json_write", "json_read", "yaml_write", "yaml_read", "pprint", "makedirs", "cli_args", "clog",
+
            ]
 
 
 class tcolors:
-    """
-    Terminal Colors
+    """Terminal Colors
     ---
 
     https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
@@ -43,7 +42,10 @@ class tcolors:
 
 
 class tformat:
-    """https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
+    """Terminal formatting
+    ---
+
+    https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
     """
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
@@ -51,8 +53,7 @@ class tformat:
 
 
 class vcolors:
-    """
-    Verbose Colors
+    """Verbose Colors
     ---
 
     https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
@@ -64,11 +65,14 @@ class vcolors:
 
 
 def clog(*args, end='\n', verbose='DEBUG'):
-    """Logger with date-time and font coloring.
+    """Logger with date-time and font coloring
 
-    Keyword Arguments:
-        end {str} -- [description] (default: {'\\n'})
-        verbose {str} -- [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN] (default: {'DEBUG'})
+    Parameters
+    ----------
+    end : str, optional
+        [End character], by default '\\n'
+    verbose : str, optional
+        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default 'DEBUG'
     """
     if verbose == 'DEBUG':
         _print(*args, end=end)
@@ -159,19 +163,25 @@ def _arg_reform(params):
 
 
 def cli_args(cli_params):
-    """[summary]
+    """Simple commad-line arguments built on top of argparse
 
-    Arguments:
-        cli_params {dict} -- [A python dict containing, cli argument name and defalut value as key, value pairs]
+    Parameters
+    ----------
+    cli_params : [dict]
+        [A python dict containing, cli argument name and defalut value as key, value pairs]
 
-    Raises:
-        TypeError: [Input type can only be dict]
+    Returns
+    -------
+    [dict]
+        [A python dict similar to the input, except the values are replaced by user argument values]
 
-    Returns:
-        [dict] -- [A python dict similar to the input, except the values are replaced by user argument values]
+    Raises
+    ------
+    TypeError
+        [Input type can only be dict]
 
-    Usage:
-
+    Usage
+    -----
         cli_params = dict(task=0,
                       length=10
                       )
@@ -197,23 +207,27 @@ def cli_args(cli_params):
 
 
 def makedirs(path):
-    """Make directories if they don't already exists/
+    """Make directories if they do not already exists
 
-    Arguments:
-        path {str} -- ['path/to/the/folder/']
+    Parameters
+    ----------
+    path : [str]
+        ['path/to/the/folder/']
     """
+
     if not os.path.exists(path):
         os.makedirs(path)
 
 
 def pprint(input, header=''):
-    """Skylynx Pretty Print - Print a python dict object in a human readable form.
+    """Skylynx Pretty Print - Print a python dict object in a human readable form
 
-    Arguments:
-        input {dict} -- [python dictionary]
-
-    Keyword Arguments:
-        header {str} -- [Header for pretty print] (default: {''})
+    Parameters
+    ----------
+    input : [dict]
+        [python dictionary]
+    header : str, optional
+        [Header for pretty print], by default ''
     """
     _prettyPrint(input, heading=header)
 
@@ -312,9 +326,12 @@ def _getMaxLen(input, output, prev_indent=0):
 def yaml_write(filename, data):
     """Write .yaml files
 
-    Arguments:
-        filename {yaml} -- [path/to/file/name.yaml]
-        data {dict} -- [python dictionary object]
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
+    data : [dict]
+        [python dictionary object]
     """
     with open(filename, 'w') as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
@@ -323,22 +340,29 @@ def yaml_write(filename, data):
 def yaml_read(filename):
     """Read .yaml files
 
-    Arguments:
-        filename {yaml} -- [path/to/file/name.yaml]
+    Parameters
+    ----------
+    filename : [yaml]
+        [path/to/file/name.yaml]
 
-    Returns:
-        [dict] -- [python dictionary object]
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
     """
     with open(filename) as file:
         return yaml.load(file, Loader=yaml.FullLoader)
 
 
 def json_write(filename, data):
-    """Write .json files (with indent and utf-8 encoding)
+    """Write .json files (with indent and `utf-8` encoding)
 
-    Arguments:
-        filename {json} -- [path/to/file/name.json]
-        data {dict} -- [python dictionary object]
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
+    data : [dict]
+        [python dictionary object]
     """
     with open(filename, 'w', encoding='utf-8') as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=2)
@@ -347,14 +371,19 @@ def json_write(filename, data):
 def json_read(filename):
     """Read .json files
 
-    Arguments:
-        filename {json} -- [path/to/file/name.json]
+    Parameters
+    ----------
+    filename : [json]
+        [path/to/file/name.json]
 
-    Returns:
-        [dict] -- [python dictionary object]
+    Returns
+    -------
+    [dict]
+        [python dictionary object]
     """
+
     with open(filename) as f_in:
-        return(json.load(f_in))
+        return json.load(f_in)
 
 
 if __name__ == '__main__':
