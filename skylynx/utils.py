@@ -12,13 +12,29 @@ import string
 import datetime
 
 __all__ = ["json_write", "json_read", "yaml_write", "yaml_read",
-           "pprint", "makedirs", "cli_args", "clog",
+           "pprint", "makedirs", "cli_args", "clog", "numpy_docs", 
            ]
+
+def numpy_docs(abc, qwe=True):
+    """[summary]
+    
+    Parameters
+    ----------
+    abc : [type]
+        [description]
+    qwe : bool, optional
+        [description], by default True
+    
+    Returns
+    -------
+    [type]
+        [description]
+    """    
+    return []
 
 
 class tcolors:
-    """
-    Terminal Colors
+    """Terminal Colors
     ---
 
     https://en.wikipedia.org/wiki/ANSI_escape_code#Colors

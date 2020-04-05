@@ -22,3 +22,7 @@ Only submit to PyPi through master branch
 1. Make `requirements.txt`
 1. Travis-CI
 1. Switch to `master` branch and Push to PyPi
+
+## Docs
+
+https://realpython.com/documenting-python-code/
