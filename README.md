@@ -8,8 +8,8 @@ Python support functions module
 
 **Only Python 3**
 
-Website : https://basameera.github.io/skylynx/
-Github: https://github.com/basameera/skylynx
+[Website](https://basameera.github.io/skylynx/)
+[Github](https://github.com/basameera/skylynx)
 
 ---
 
@@ -21,5 +21,6 @@ Github: https://github.com/basameera/skylynx
 
 ## Documentation
 
+[How to use](https://github.com/basameera/skylynx/blob/master/docs/USAGE.md)
 [Docs](https://basameera.github.io/skylynx/)
 
