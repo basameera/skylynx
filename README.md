@@ -1,6 +1,6 @@
-# skylynx
+#  skylynx 
 
-**Status**
+<img src="https://raw.githubusercontent.com/basameera/skylynx/master/docs/toolbox.png" alt="drawing" width="80"/>
 
 [![Build Status](https://travis-ci.org/basameera/skylynx.svg?branch=master)](https://travis-ci.org/basameera/skylynx)
 
