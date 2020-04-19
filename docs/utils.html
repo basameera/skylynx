@@ -215,7 +215,7 @@ def cli_args(cli_params):
                       )
 
         args = cli_args(cli_params)
-        task = args[&#39;task&#39;]
+        task = int(args[&#39;task&#39;])
     &#34;&#34;&#34;
 
     params = _arg_reform(cli_params)
@@ -449,7 +449,7 @@ if __name__ == &#39;__main__&#39;:
               )
 
 args = cli_args(cli_params)
-task = args['task']
+task = int(args['task'])
 </code></pre></section>
 <details class="source">
 <summary>
@@ -480,7 +480,7 @@ task = args['task']
                       )
 
         args = cli_args(cli_params)
-        task = args[&#39;task&#39;]
+        task = int(args[&#39;task&#39;])
     &#34;&#34;&#34;
 
     params = _arg_reform(cli_params)

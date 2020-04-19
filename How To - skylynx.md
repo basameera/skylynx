@@ -25,4 +25,5 @@ Only submit to PyPi through master branch
 
 ## Docs
 
-https://realpython.com/documenting-python-code/
+1. Run `gen_docs.sh`
+1. Put how to use info in `docs/USAGE.md`
