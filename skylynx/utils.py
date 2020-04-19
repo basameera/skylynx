@@ -187,7 +187,7 @@ def cli_args(cli_params):
                       )
 
         args = cli_args(cli_params)
-        task = args['task']
+        task = int(args['task'])
     """
 
     params = _arg_reform(cli_params)
