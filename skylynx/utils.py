@@ -182,12 +182,17 @@ def cli_args(cli_params):
 
     Usage
     -----
-        cli_params = dict(task=0,
-                      length=10
-                      )
+        cli_params = dict(
+            task=0,
+            factor=0.5,
+            name='skylynx'
+        )
 
         args = cli_args(cli_params)
+
         task = int(args['task'])
+        factor = float(args['factor'])
+        name = args['name']
     """
 
     params = _arg_reform(cli_params)

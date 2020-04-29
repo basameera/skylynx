@@ -210,12 +210,17 @@ def cli_args(cli_params):
 
     Usage
     -----
-        cli_params = dict(task=0,
-                      length=10
-                      )
+        cli_params = dict(
+            task=0,
+            factor=0.5,
+            name=&#39;skylynx&#39;
+        )
 
         args = cli_args(cli_params)
+
         task = int(args[&#39;task&#39;])
+        factor = float(args[&#39;factor&#39;])
+        name = args[&#39;name&#39;]
     &#34;&#34;&#34;
 
     params = _arg_reform(cli_params)
@@ -444,12 +449,17 @@ if __name__ == &#39;__main__&#39;:
 <dd>[Input type can only be dict]</dd>
 </dl>
 <h2 id="usage">Usage</h2>
-<pre><code>cli_params = dict(task=0,
-              length=10
-              )
+<pre><code>cli_params = dict(
+    task=0,
+    factor=0.5,
+    name='skylynx'
+)
 
 args = cli_args(cli_params)
+
 task = int(args['task'])
+factor = float(args['factor'])
+name = args['name']
 </code></pre></section>
 <details class="source">
 <summary>
@@ -475,12 +485,17 @@ task = int(args['task'])
 
     Usage
     -----
-        cli_params = dict(task=0,
-                      length=10
-                      )
+        cli_params = dict(
+            task=0,
+            factor=0.5,
+            name=&#39;skylynx&#39;
+        )
 
         args = cli_args(cli_params)
+
         task = int(args[&#39;task&#39;])
+        factor = float(args[&#39;factor&#39;])
+        name = args[&#39;name&#39;]
     &#34;&#34;&#34;
 
     params = _arg_reform(cli_params)
