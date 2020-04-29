@@ -10,6 +10,7 @@ This changelog summarizes major changes in `skylynx` python module.
 
 #### Added
 
+* `docs/server.sh` for testing html docs
 * `cli_args` custom usage
 ```python
 cli_params = dict(

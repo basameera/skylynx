@@ -184,6 +184,7 @@ def cli_args(cli_params, usage=None):
 
     Usage
     -----
+        # Normal usage
         cli_params = dict(
             task=0,
             factor=0.5,
@@ -195,6 +196,10 @@ def cli_args(cli_params, usage=None):
         task = int(args['task'])
         factor = float(args['factor'])
         name = args['name']
+
+        # Custom usage string
+        usage = 'python tests/test.py -a 1'
+        args = cli_args(cli_params, usage=usage)
     """
 
     params = _arg_reform(cli_params)

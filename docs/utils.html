@@ -212,6 +212,7 @@ def cli_args(cli_params, usage=None):
 
     Usage
     -----
+        # Normal usage
         cli_params = dict(
             task=0,
             factor=0.5,
@@ -223,6 +224,10 @@ def cli_args(cli_params, usage=None):
         task = int(args[&#39;task&#39;])
         factor = float(args[&#39;factor&#39;])
         name = args[&#39;name&#39;]
+
+        # Custom usage string
+        usage = &#39;python tests/test.py -a 1&#39;
+        args = cli_args(cli_params, usage=usage)
     &#34;&#34;&#34;
 
     params = _arg_reform(cli_params)
@@ -453,7 +458,8 @@ A python dict similar to the input, except the values are replaced by user argum
 <dd>Input type can only be dict</dd>
 </dl>
 <h2 id="usage">Usage</h2>
-<pre><code>cli_params = dict(
+<pre><code># Normal usage
+cli_params = dict(
     task=0,
     factor=0.5,
     name='skylynx'
@@ -464,6 +470,10 @@ args = cli_args(cli_params)
 task = int(args['task'])
 factor = float(args['factor'])
 name = args['name']
+
+# Custom usage string
+usage = 'python tests/test.py -a 1'
+args = cli_args(cli_params, usage=usage)
 </code></pre></section>
 <details class="source">
 <summary>
@@ -491,6 +501,7 @@ name = args['name']
 
     Usage
     -----
+        # Normal usage
         cli_params = dict(
             task=0,
             factor=0.5,
@@ -502,6 +513,10 @@ name = args['name']
         task = int(args[&#39;task&#39;])
         factor = float(args[&#39;factor&#39;])
         name = args[&#39;name&#39;]
+
+        # Custom usage string
+        usage = &#39;python tests/test.py -a 1&#39;
+        args = cli_args(cli_params, usage=usage)
     &#34;&#34;&#34;
 
     params = _arg_reform(cli_params)
