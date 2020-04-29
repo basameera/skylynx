@@ -162,39 +162,51 @@ def _arg_reform(params):
         raise TypeError('params should be dict type')
 
 
-def cli_args(cli_params):
+def cli_args(cli_params, usage=None):
     """Simple commad-line arguments built on top of argparse
 
     Parameters
     ----------
     cli_params : [dict]
-        [A python dict containing, cli argument name and defalut value as key, value pairs]
+        A python dict containing, cli argument name and defalut value as key, value pairs
+    usage : [str], optional
+        Define custom usage (e.g. `'python main.py -a 0 -b 1.5 -c sky'`), by default None
 
     Returns
     -------
     [dict]
-        [A python dict similar to the input, except the values are replaced by user argument values]
+        A python dict similar to the input, except the values are replaced by user argument values
 
     Raises
     ------
     TypeError
-        [Input type can only be dict]
+        Input type can only be dict
 
     Usage
     -----
-        cli_params = dict(task=0,
-                      length=10
-                      )
+        # Normal usage
+        cli_params = dict(
+            task=0,
+            factor=0.5,
+            name='skylynx'
+        )
 
         args = cli_args(cli_params)
+
         task = int(args['task'])
+        factor = float(args['factor'])
+        name = args['name']
+
+        # Custom usage string
+        usage = 'python tests/test.py -a 1'
+        args = cli_args(cli_params, usage=usage)
     """
 
     params = _arg_reform(cli_params)
     # check if params is dict
     if isinstance(params, dict):
         parser = argparse.ArgumentParser(
-            description='*** Simple cli args - by Skylynx ***')
+            description='*** Simple cli args - by Skylynx ***', usage=usage)
         for key, value in params.items():
             parser.add_argument('-'+key, help=value[0], default=value[1])
         output = dict()
