@@ -190,23 +190,25 @@ def _arg_reform(params):
         raise TypeError(&#39;params should be dict type&#39;)
 
 
-def cli_args(cli_params):
+def cli_args(cli_params, usage=None):
     &#34;&#34;&#34;Simple commad-line arguments built on top of argparse
 
     Parameters
     ----------
     cli_params : [dict]
-        [A python dict containing, cli argument name and defalut value as key, value pairs]
+        A python dict containing, cli argument name and defalut value as key, value pairs
+    usage : [str], optional
+        Define custom usage (e.g. `&#39;python main.py -a 0 -b 1.5 -c sky&#39;`), by default None
 
     Returns
     -------
     [dict]
-        [A python dict similar to the input, except the values are replaced by user argument values]
+        A python dict similar to the input, except the values are replaced by user argument values
 
     Raises
     ------
     TypeError
-        [Input type can only be dict]
+        Input type can only be dict
 
     Usage
     -----
@@ -227,7 +229,7 @@ def cli_args(cli_params):
     # check if params is dict
     if isinstance(params, dict):
         parser = argparse.ArgumentParser(
-            description=&#39;*** Simple cli args - by Skylynx ***&#39;)
+            description=&#39;*** Simple cli args - by Skylynx ***&#39;, usage=usage)
         for key, value in params.items():
             parser.add_argument(&#39;-&#39;+key, help=value[0], default=value[1])
         output = dict()
@@ -431,22 +433,24 @@ if __name__ == &#39;__main__&#39;:
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="skylynx.utils.cli_args"><code class="name flex">
-<span>def <span class="ident">cli_args</span></span>(<span>cli_params)</span>
+<span>def <span class="ident">cli_args</span></span>(<span>cli_params, usage=None)</span>
 </code></dt>
 <dd>
 <section class="desc"><p>Simple commad-line arguments built on top of argparse</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
 <dt><strong><code>cli_params</code></strong> :&ensp;[<code>dict</code>]</dt>
-<dd>[A python dict containing, cli argument name and defalut value as key, value pairs]</dd>
+<dd>A python dict containing, cli argument name and defalut value as key, value pairs</dd>
+<dt><strong><code>usage</code></strong> :&ensp;[<code>str</code>], optional</dt>
+<dd>Define custom usage (e.g. <code>'python main.py -a 0 -b 1.5 -c sky'</code>), by default None</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <p>[dict]
-[A python dict similar to the input, except the values are replaced by user argument values]</p>
+A python dict similar to the input, except the values are replaced by user argument values</p>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>TypeError</code></dt>
-<dd>[Input type can only be dict]</dd>
+<dd>Input type can only be dict</dd>
 </dl>
 <h2 id="usage">Usage</h2>
 <pre><code>cli_params = dict(
@@ -465,23 +469,25 @@ name = args['name']
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def cli_args(cli_params):
+<pre><code class="python">def cli_args(cli_params, usage=None):
     &#34;&#34;&#34;Simple commad-line arguments built on top of argparse
 
     Parameters
     ----------
     cli_params : [dict]
-        [A python dict containing, cli argument name and defalut value as key, value pairs]
+        A python dict containing, cli argument name and defalut value as key, value pairs
+    usage : [str], optional
+        Define custom usage (e.g. `&#39;python main.py -a 0 -b 1.5 -c sky&#39;`), by default None
 
     Returns
     -------
     [dict]
-        [A python dict similar to the input, except the values are replaced by user argument values]
+        A python dict similar to the input, except the values are replaced by user argument values
 
     Raises
     ------
     TypeError
-        [Input type can only be dict]
+        Input type can only be dict
 
     Usage
     -----
@@ -502,7 +508,7 @@ name = args['name']
     # check if params is dict
     if isinstance(params, dict):
         parser = argparse.ArgumentParser(
-            description=&#39;*** Simple cli args - by Skylynx ***&#39;)
+            description=&#39;*** Simple cli args - by Skylynx ***&#39;, usage=usage)
         for key, value in params.items():
             parser.add_argument(&#39;-&#39;+key, help=value[0], default=value[1])
         output = dict()
