@@ -18,7 +18,7 @@
 ## To Do List
 
 - [ ] Add Change log
-- [ ] Generate docs
+- [x] Generate docs
 
 ## Release
 
