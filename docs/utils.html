@@ -98,9 +98,9 @@ def clog(*args, end=&#39;\n&#39;, verbose=&#39;DEBUG&#39;):
     Parameters
     ----------
     end : str, optional
-        [End character], by default &#39;\\n&#39;
+        End character, by default &#39;\\n&#39;
     verbose : str, optional
-        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default &#39;DEBUG&#39;
+        DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, by default &#39;DEBUG&#39;
     &#34;&#34;&#34;
     if verbose == &#39;DEBUG&#39;:
         _print(*args, end=end)
@@ -167,8 +167,8 @@ def _cyan(*args, end=&#39;\n&#39;):
     _print(*args, end=end, header=tcolors.FG_CYAN, footer=tformat.ENDC)
 
 
-def _print(*args, end=&#39;\n&#39;, header=&#39;&#39;, footer=&#39;&#39;):
-    msg = &#39;&gt;&gt;&gt; &#39;+str(datetime.datetime.now()).split(&#39;.&#39;)[0][2:] + &#39; :&#39;
+def _print(*args, end=&#39;\n&#39;, header=&#39;&#39;, footer=&#39;&#39;, symbol=&#39;&gt;&#39;):
+    msg = symbol*2 +&#39; &#39;+str(datetime.datetime.now()).split(&#39;.&#39;)[0][2:].replace(&#39;:&#39;, &#39;.&#39;) + &#39;:&#39;
     for s in args:
         msg = msg + &#39; &#39; + str(s)
     print(header + msg + footer, end=end)
@@ -195,14 +195,14 @@ def cli_args(cli_params, usage=None):
 
     Parameters
     ----------
-    cli_params : [dict]
+    cli_params : dict
         A python dict containing, cli argument name and defalut value as key, value pairs
-    usage : [str], optional
+    usage : str, optional
         Define custom usage (e.g. `&#39;python main.py -a 0 -b 1.5 -c sky&#39;`), by default None
 
     Returns
     -------
-    [dict]
+    dict
         A python dict similar to the input, except the values are replaced by user argument values
 
     Raises
@@ -251,8 +251,8 @@ def makedirs(path):
 
     Parameters
     ----------
-    path : [str]
-        [&#39;path/to/the/folder/&#39;]
+    path : str
+        path/to/the/folder/
     &#34;&#34;&#34;
 
     if not os.path.exists(path):
@@ -264,10 +264,10 @@ def pprint(input, header=&#39;&#39;):
 
     Parameters
     ----------
-    input : [dict]
-        [python dictionary]
+    input : dict
+        Python dictionary
     header : str, optional
-        [Header for pretty print], by default &#39;&#39;
+        Header for pretty print, by default &#39; &#39;
     &#34;&#34;&#34;
     _prettyPrint(input, heading=header)
 
@@ -364,31 +364,31 @@ def _getMaxLen(input, output, prev_indent=0):
 
 
 def yaml_write(filename, data):
-    &#34;&#34;&#34;Write .yaml files
+    &#34;&#34;&#34;Write .yml files
 
     Parameters
     ----------
-    filename : [yaml]
-        [path/to/file/name.yaml]
-    data : [dict]
-        [python dictionary object]
+    filename : .yml
+        path/to/file/name.yml
+    data : dict
+        Python dictionary object
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;) as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
 
 
 def yaml_read(filename):
-    &#34;&#34;&#34;Read .yaml files
+    &#34;&#34;&#34;Read .yml files
 
     Parameters
     ----------
-    filename : [yaml]
-        [path/to/file/name.yaml]
+    filename : .yml
+        path/to/file/name.yml
 
     Returns
     -------
-    [dict]
-        [python dictionary object]
+    dict
+        Python dictionary object
     &#34;&#34;&#34;
     with open(filename) as file:
         return yaml.load(file, Loader=yaml.FullLoader)
@@ -399,10 +399,10 @@ def json_write(filename, data):
 
     Parameters
     ----------
-    filename : [json]
-        [path/to/file/name.json]
-    data : [dict]
-        [python dictionary object]
+    filename : .json
+        path/to/file/name.json
+    data : dict
+        Python dictionary object
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;, encoding=&#39;utf-8&#39;) as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=2)
@@ -413,13 +413,13 @@ def json_read(filename):
 
     Parameters
     ----------
-    filename : [json]
-        [path/to/file/name.json]
+    filename : .json
+        path/to/file/name.json
 
     Returns
     -------
-    [dict]
-        [python dictionary object]
+    dict
+        Python dictionary object
     &#34;&#34;&#34;
 
     with open(filename) as f_in:
@@ -444,14 +444,16 @@ if __name__ == &#39;__main__&#39;:
 <section class="desc"><p>Simple commad-line arguments built on top of argparse</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>cli_params</code></strong> :&ensp;[<code>dict</code>]</dt>
+<dt><strong><code>cli_params</code></strong> :&ensp;<code>dict</code></dt>
 <dd>A python dict containing, cli argument name and defalut value as key, value pairs</dd>
-<dt><strong><code>usage</code></strong> :&ensp;[<code>str</code>], optional</dt>
+<dt><strong><code>usage</code></strong> :&ensp;<code>str</code>, optional</dt>
 <dd>Define custom usage (e.g. <code>'python main.py -a 0 -b 1.5 -c sky'</code>), by default None</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>[dict]
-A python dict similar to the input, except the values are replaced by user argument values</p>
+<dl>
+<dt><code>dict</code></dt>
+<dd>A python dict similar to the input, except the values are replaced by user argument values</dd>
+</dl>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>TypeError</code></dt>
@@ -484,14 +486,14 @@ args = cli_args(cli_params, usage=usage)
 
     Parameters
     ----------
-    cli_params : [dict]
+    cli_params : dict
         A python dict containing, cli argument name and defalut value as key, value pairs
-    usage : [str], optional
+    usage : str, optional
         Define custom usage (e.g. `&#39;python main.py -a 0 -b 1.5 -c sky&#39;`), by default None
 
     Returns
     -------
-    [dict]
+    dict
         A python dict similar to the input, except the values are replaced by user argument values
 
     Raises
@@ -543,9 +545,9 @@ args = cli_args(cli_params, usage=usage)
 <h2 id="parameters">Parameters</h2>
 <dl>
 <dt><strong><code>end</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>[End character], by default '\n'</dd>
+<dd>End character, by default '\n'</dd>
 <dt><strong><code>verbose</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>[DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default 'DEBUG'</dd>
+<dd>DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, by default 'DEBUG'</dd>
 </dl></section>
 <details class="source">
 <summary>
@@ -557,9 +559,9 @@ args = cli_args(cli_params, usage=usage)
     Parameters
     ----------
     end : str, optional
-        [End character], by default &#39;\\n&#39;
+        End character, by default &#39;\\n&#39;
     verbose : str, optional
-        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default &#39;DEBUG&#39;
+        DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, by default &#39;DEBUG&#39;
     &#34;&#34;&#34;
     if verbose == &#39;DEBUG&#39;:
         _print(*args, end=end)
@@ -593,12 +595,14 @@ args = cli_args(cli_params, usage=usage)
 <section class="desc"><p>Read .json files</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>filename</code></strong> :&ensp;[<code>json</code>]</dt>
-<dd>[path/to/file/name.json]</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>.json</code></dt>
+<dd>path/to/file/name.json</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>[dict]
-[python dictionary object]</p></section>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Python dictionary object</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -608,13 +612,13 @@ args = cli_args(cli_params, usage=usage)
 
     Parameters
     ----------
-    filename : [json]
-        [path/to/file/name.json]
+    filename : .json
+        path/to/file/name.json
 
     Returns
     -------
-    [dict]
-        [python dictionary object]
+    dict
+        Python dictionary object
     &#34;&#34;&#34;
 
     with open(filename) as f_in:
@@ -628,10 +632,10 @@ args = cli_args(cli_params, usage=usage)
 <section class="desc"><p>Write .json files (with indent and <code>utf-8</code> encoding)</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>filename</code></strong> :&ensp;[<code>json</code>]</dt>
-<dd>[path/to/file/name.json]</dd>
-<dt><strong><code>data</code></strong> :&ensp;[<code>dict</code>]</dt>
-<dd>[python dictionary object]</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>.json</code></dt>
+<dd>path/to/file/name.json</dd>
+<dt><strong><code>data</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Python dictionary object</dd>
 </dl></section>
 <details class="source">
 <summary>
@@ -642,10 +646,10 @@ args = cli_args(cli_params, usage=usage)
 
     Parameters
     ----------
-    filename : [json]
-        [path/to/file/name.json]
-    data : [dict]
-        [python dictionary object]
+    filename : .json
+        path/to/file/name.json
+    data : dict
+        Python dictionary object
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;, encoding=&#39;utf-8&#39;) as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=2)</code></pre>
@@ -658,8 +662,8 @@ args = cli_args(cli_params, usage=usage)
 <section class="desc"><p>Make directories if they do not already exists</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>path</code></strong> :&ensp;[<code>str</code>]</dt>
-<dd>['path/to/the/folder/']</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>str</code></dt>
+<dd>path/to/the/folder/</dd>
 </dl></section>
 <details class="source">
 <summary>
@@ -670,8 +674,8 @@ args = cli_args(cli_params, usage=usage)
 
     Parameters
     ----------
-    path : [str]
-        [&#39;path/to/the/folder/&#39;]
+    path : str
+        path/to/the/folder/
     &#34;&#34;&#34;
 
     if not os.path.exists(path):
@@ -685,10 +689,10 @@ args = cli_args(cli_params, usage=usage)
 <section class="desc"><p>Skylynx Pretty Print - Print a python dict object in a human readable form</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>input</code></strong> :&ensp;[<code>dict</code>]</dt>
-<dd>[python dictionary]</dd>
+<dt><strong><code>input</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Python dictionary</dd>
 <dt><strong><code>header</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>[Header for pretty print], by default ''</dd>
+<dd>Header for pretty print, by default ' '</dd>
 </dl></section>
 <details class="source">
 <summary>
@@ -699,10 +703,10 @@ args = cli_args(cli_params, usage=usage)
 
     Parameters
     ----------
-    input : [dict]
-        [python dictionary]
+    input : dict
+        Python dictionary
     header : str, optional
-        [Header for pretty print], by default &#39;&#39;
+        Header for pretty print, by default &#39; &#39;
     &#34;&#34;&#34;
     _prettyPrint(input, heading=header)</code></pre>
 </details>
@@ -711,31 +715,33 @@ args = cli_args(cli_params, usage=usage)
 <span>def <span class="ident">yaml_read</span></span>(<span>filename)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Read .yaml files</p>
+<section class="desc"><p>Read .yml files</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>filename</code></strong> :&ensp;[<code>yaml</code>]</dt>
-<dd>[path/to/file/name.yaml]</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>.yml</code></dt>
+<dd>path/to/file/name.yml</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>[dict]
-[python dictionary object]</p></section>
+<dl>
+<dt><code>dict</code></dt>
+<dd>Python dictionary object</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def yaml_read(filename):
-    &#34;&#34;&#34;Read .yaml files
+    &#34;&#34;&#34;Read .yml files
 
     Parameters
     ----------
-    filename : [yaml]
-        [path/to/file/name.yaml]
+    filename : .yml
+        path/to/file/name.yml
 
     Returns
     -------
-    [dict]
-        [python dictionary object]
+    dict
+        Python dictionary object
     &#34;&#34;&#34;
     with open(filename) as file:
         return yaml.load(file, Loader=yaml.FullLoader)</code></pre>
@@ -745,27 +751,27 @@ args = cli_args(cli_params, usage=usage)
 <span>def <span class="ident">yaml_write</span></span>(<span>filename, data)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Write .yaml files</p>
+<section class="desc"><p>Write .yml files</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>filename</code></strong> :&ensp;[<code>yaml</code>]</dt>
-<dd>[path/to/file/name.yaml]</dd>
-<dt><strong><code>data</code></strong> :&ensp;[<code>dict</code>]</dt>
-<dd>[python dictionary object]</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>.yml</code></dt>
+<dd>path/to/file/name.yml</dd>
+<dt><strong><code>data</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Python dictionary object</dd>
 </dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def yaml_write(filename, data):
-    &#34;&#34;&#34;Write .yaml files
+    &#34;&#34;&#34;Write .yml files
 
     Parameters
     ----------
-    filename : [yaml]
-        [path/to/file/name.yaml]
-    data : [dict]
-        [python dictionary object]
+    filename : .yml
+        path/to/file/name.yml
+    data : dict
+        Python dictionary object
     &#34;&#34;&#34;
     with open(filename, &#39;w&#39;) as outfile:
         yaml.dump(data, outfile, default_flow_style=False)</code></pre>

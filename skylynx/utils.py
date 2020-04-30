@@ -70,9 +70,9 @@ def clog(*args, end='\n', verbose='DEBUG'):
     Parameters
     ----------
     end : str, optional
-        [End character], by default '\\n'
+        End character, by default '\\n'
     verbose : str, optional
-        [DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN], by default 'DEBUG'
+        DEBUG, INFO, WARNING, ERROR, CRITICAL, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, by default 'DEBUG'
     """
     if verbose == 'DEBUG':
         _print(*args, end=end)
@@ -139,8 +139,8 @@ def _cyan(*args, end='\n'):
     _print(*args, end=end, header=tcolors.FG_CYAN, footer=tformat.ENDC)
 
 
-def _print(*args, end='\n', header='', footer=''):
-    msg = '>>> '+str(datetime.datetime.now()).split('.')[0][2:] + ' :'
+def _print(*args, end='\n', header='', footer='', symbol='>'):
+    msg = symbol*2 +' '+str(datetime.datetime.now()).split('.')[0][2:].replace(':', '.') + ':'
     for s in args:
         msg = msg + ' ' + str(s)
     print(header + msg + footer, end=end)
@@ -167,14 +167,14 @@ def cli_args(cli_params, usage=None):
 
     Parameters
     ----------
-    cli_params : [dict]
+    cli_params : dict
         A python dict containing, cli argument name and defalut value as key, value pairs
-    usage : [str], optional
+    usage : str, optional
         Define custom usage (e.g. `'python main.py -a 0 -b 1.5 -c sky'`), by default None
 
     Returns
     -------
-    [dict]
+    dict
         A python dict similar to the input, except the values are replaced by user argument values
 
     Raises
@@ -223,8 +223,8 @@ def makedirs(path):
 
     Parameters
     ----------
-    path : [str]
-        ['path/to/the/folder/']
+    path : str
+        path/to/the/folder/
     """
 
     if not os.path.exists(path):
@@ -236,10 +236,10 @@ def pprint(input, header=''):
 
     Parameters
     ----------
-    input : [dict]
-        [python dictionary]
+    input : dict
+        Python dictionary
     header : str, optional
-        [Header for pretty print], by default ''
+        Header for pretty print, by default ' '
     """
     _prettyPrint(input, heading=header)
 
@@ -336,31 +336,31 @@ def _getMaxLen(input, output, prev_indent=0):
 
 
 def yaml_write(filename, data):
-    """Write .yaml files
+    """Write .yml files
 
     Parameters
     ----------
-    filename : [yaml]
-        [path/to/file/name.yaml]
-    data : [dict]
-        [python dictionary object]
+    filename : .yml
+        path/to/file/name.yml
+    data : dict
+        Python dictionary object
     """
     with open(filename, 'w') as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
 
 
 def yaml_read(filename):
-    """Read .yaml files
+    """Read .yml files
 
     Parameters
     ----------
-    filename : [yaml]
-        [path/to/file/name.yaml]
+    filename : .yml
+        path/to/file/name.yml
 
     Returns
     -------
-    [dict]
-        [python dictionary object]
+    dict
+        Python dictionary object
     """
     with open(filename) as file:
         return yaml.load(file, Loader=yaml.FullLoader)
@@ -371,10 +371,10 @@ def json_write(filename, data):
 
     Parameters
     ----------
-    filename : [json]
-        [path/to/file/name.json]
-    data : [dict]
-        [python dictionary object]
+    filename : .json
+        path/to/file/name.json
+    data : dict
+        Python dictionary object
     """
     with open(filename, 'w', encoding='utf-8') as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=2)
@@ -385,13 +385,13 @@ def json_read(filename):
 
     Parameters
     ----------
-    filename : [json]
-        [path/to/file/name.json]
+    filename : .json
+        path/to/file/name.json
 
     Returns
     -------
-    [dict]
-        [python dictionary object]
+    dict
+        Python dictionary object
     """
 
     with open(filename) as f_in:

@@ -24,3 +24,6 @@ Python support functions module
 [How to use](https://github.com/basameera/skylynx/blob/master/docs/USAGE.md)
 [Docs](https://basameera.github.io/skylynx/)
 
+## Ideas
+
+easy plotutils submodule based on matplotlib (e.g. bar graph with errorbars https://pythonforundergradengineers.com/python-matplotlib-error-bars.html)
