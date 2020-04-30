@@ -14,4 +14,4 @@ if __name__ == "__main__":
 
     task = int(args['task'])
 
-    clog('Hello')
+    clog('Hello', verbose='RED')

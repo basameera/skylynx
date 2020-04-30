@@ -2,7 +2,17 @@
 
 This changelog summarizes major changes in `skylynx` python module.
 
-## Version 0.1.2
+## Version 0.1.3 [30-04-2020]
+
+#### Fixed
+
+* `docs` unneccessary parantheses
+
+#### Changed
+
+* `clog` : custom starting symbol `>, #, @, $, %` and spacing
+
+## Version 0.1.2 [29-04-2020]
 
 #### Fixed
 
