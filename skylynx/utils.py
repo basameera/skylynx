@@ -140,7 +140,8 @@ def _cyan(*args, end='\n'):
 
 
 def _print(*args, end='\n', header='', footer='', symbol='>'):
-    msg = symbol*2 +' '+str(datetime.datetime.now()).split('.')[0][2:].replace(':', '.') + ':'
+    msg = symbol*2 + ' '+str(datetime.datetime.now()
+                             ).split('.')[0][2:].replace(':', '.') + ':'
     for s in args:
         msg = msg + ' ' + str(s)
     print(header + msg + footer, end=end)
@@ -363,7 +364,8 @@ def yaml_read(filename):
         Python dictionary object
     """
     with open(filename) as file:
-        return yaml.load(file, Loader=yaml.FullLoader)
+        data = yaml.load(file, Loader=yaml.FullLoader)
+    return data
 
 
 def json_write(filename, data):
@@ -395,7 +397,8 @@ def json_read(filename):
     """
 
     with open(filename) as f_in:
-        return json.load(f_in)
+        data = json.load(f_in)
+    return data
 
 
 if __name__ == '__main__':
